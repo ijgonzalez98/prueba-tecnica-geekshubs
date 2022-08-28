@@ -1,0 +1,5 @@
+1. Instalar el siguiente paquete en la capa Domain
+Install-Package Microsoft.EntityFrameworkCore.Tools
+
+2. Lanzar el siguiente comando desde la consola del 'Administrador de paquetes' marcando como proyecto determinado Domain
+Scaffold-DbContext 'Server=localhost; Database=prueba-tecnica-geekshubs; Trusted_Connection=True; Connect Timeout=30;' Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -Context TiendaDbContext -ContextNamespace PruebaGeeksHubs.Infrastructure.Contexts -ContextDir ../PruebaGeeksHubs.Infrastructure/Contexts -Tables categoria,producto,cliente,compra,compra_producto -Force
