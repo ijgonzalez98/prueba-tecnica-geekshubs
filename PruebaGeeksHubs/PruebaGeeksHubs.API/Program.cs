@@ -1,4 +1,5 @@
 using PruebaGeeksHubs.API.Exceptions;
+using PruebaGeeksHubs.Application.Mapping;
 using PruebaGeeksHubs.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceInfrastructure(builder.Configuration);
+builder.Services.AddAutoMapper(typeof(GeneralProfile).Assembly);
 
 var app = builder.Build();
 
