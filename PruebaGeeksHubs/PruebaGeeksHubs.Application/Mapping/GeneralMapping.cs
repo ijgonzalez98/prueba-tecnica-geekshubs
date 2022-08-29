@@ -8,7 +8,7 @@ namespace PruebaGeeksHubs.Application.Mapping
     {
         public GeneralProfile()
         {
-            
+            CreateMap<Categorium, CategoriaResponseDTO>();
         }
     }
 }

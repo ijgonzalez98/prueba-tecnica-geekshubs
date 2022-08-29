@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PruebaGeeksHubs.Domain.Repositories;
 using PruebaGeeksHubs.Infrastructure.Contexts;
+using PruebaGeeksHubs.Infrastructure.Repositories;
 
 namespace PruebaGeeksHubs.Infrastructure
 {
@@ -12,6 +14,7 @@ namespace PruebaGeeksHubs.Infrastructure
             services.AddDbContext<TiendaDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             #region Repositories
+            services.AddTransient<ICategoriasRepository, CategoriasRepository>();
             #endregion Repositories
         }
     }
