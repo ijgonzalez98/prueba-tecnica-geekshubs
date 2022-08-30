@@ -25,7 +25,7 @@ namespace PruebaGeeksHubs.Infrastructure.Contexts
             modelBuilder.Entity<Categorium>(entity =>
             {
                 entity.HasKey(e => e.CategoriaId)
-                    .HasName("PK__categori__DB875A4F0AB7F2DF");
+                    .HasName("PK__categori__DB875A4F0B45A8F1");
 
                 entity.ToTable("categoria");
 
@@ -98,7 +98,7 @@ namespace PruebaGeeksHubs.Infrastructure.Contexts
                 entity.HasOne(d => d.Cliente)
                     .WithMany(p => p.Compras)
                     .HasForeignKey(d => d.ClienteId)
-                    .HasConstraintName("FK__compra__cliente___2B3F6F97");
+                    .HasConstraintName("FK__compra__cliente___398D8EEE");
             });
 
             modelBuilder.Entity<CompraProducto>(entity =>
@@ -120,12 +120,12 @@ namespace PruebaGeeksHubs.Infrastructure.Contexts
                 entity.HasOne(d => d.Compra)
                     .WithMany(p => p.CompraProductos)
                     .HasForeignKey(d => d.CompraId)
-                    .HasConstraintName("FK__compra_pr__compr__2F10007B");
+                    .HasConstraintName("FK__compra_pr__compr__3D5E1FD2");
 
                 entity.HasOne(d => d.Producto)
                     .WithMany(p => p.CompraProductos)
                     .HasForeignKey(d => d.ProductoId)
-                    .HasConstraintName("FK__compra_pr__produ__2E1BDC42");
+                    .HasConstraintName("FK__compra_pr__produ__3C69FB99");
             });
 
             modelBuilder.Entity<Producto>(entity =>
@@ -150,7 +150,7 @@ namespace PruebaGeeksHubs.Infrastructure.Contexts
                 entity.HasOne(d => d.Categoria)
                     .WithMany(p => p.Productos)
                     .HasForeignKey(d => d.CategoriaId)
-                    .HasConstraintName("FK__producto__catego__267ABA7A");
+                    .HasConstraintName("FK__producto__catego__33D4B598");
             });
 
             OnModelCreatingPartial(modelBuilder);

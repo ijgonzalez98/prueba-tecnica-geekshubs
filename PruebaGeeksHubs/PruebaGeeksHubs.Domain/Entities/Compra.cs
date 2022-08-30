@@ -12,7 +12,7 @@ namespace PruebaGeeksHubs.Domain.Entities
 
         public int CompraId { get; set; }
         public int? ClienteId { get; set; }
-        public DateTime? Fecha { get; set; }
+        public DateTime Fecha { get; set; }
         public string? MetodoPago { get; set; }
         public string? Estado { get; set; }
 
