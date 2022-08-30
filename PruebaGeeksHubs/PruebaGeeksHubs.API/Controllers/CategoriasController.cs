@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PruebaGeeksHubs.Application.Features.Categorias.Commands.CreateCategoria;
+using PruebaGeeksHubs.Application.Features.Categorias.Queries.GetAllCategorias;
 using PruebaGeeksHubs.Application.Features.Categorias.Queries.GetCategoriaById;
 
 namespace PruebaGeeksHubs.API.Controllers
@@ -28,6 +30,22 @@ namespace PruebaGeeksHubs.API.Controllers
             return Ok(await _mediator.Send(query));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllCategorias()
+        {
+            return Ok(await _mediator.Send(new GetAllCategoriasQuery()));
+        }
+
         #endregion GET
+
+        #region POST
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CreateCategoriaCommand command)
+        {
+            return Ok(await _mediator.Send(command));
+        }
+
+        #endregion POST
     }
 }

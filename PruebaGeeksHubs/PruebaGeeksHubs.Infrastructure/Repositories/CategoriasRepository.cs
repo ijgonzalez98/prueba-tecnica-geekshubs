@@ -26,5 +26,20 @@ namespace PruebaGeeksHubs.Infrastructure.Repositories
                 .Where(x => x.CategoriaId == categoriaId)
                 .FirstOrDefaultAsync(cancellationToken);
         }
+
+        public async Task<List<Categorium>> GetAllCategorias(CancellationToken cancellationToken)
+        {
+            return await _context.Categoria
+                .AsNoTracking()
+                .ToListAsync(cancellationToken);
+        }
+
+        public async Task<Categorium> CreateCategoria(Categorium categoria, CancellationToken cancellationToken)
+        {
+            await _context.Categoria.AddAsync(categoria, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return categoria;
+        }
     }
 }

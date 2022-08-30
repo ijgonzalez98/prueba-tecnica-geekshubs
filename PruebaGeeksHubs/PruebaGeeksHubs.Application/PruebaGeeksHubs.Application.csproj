@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="DTOs\Requests\" />
-    <Folder Include="Features\Categorias\Commands\" />
   </ItemGroup>
 
   <ItemGroup>
