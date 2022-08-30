@@ -4,8 +4,8 @@ namespace PruebaGeeksHubs.Domain.Repositories
 {
     public interface ICategoriasRepository
     {
-        Task<Categorium> GetCategoriaById(int categoriaId, CancellationToken cancellationToken);
-        Task<List<Categorium>> GetAllCategorias(CancellationToken cancellationToken);
+        Task<T> GetCategoriaById<T>(int categoriaId, CancellationToken cancellationToken);
+        Task<List<T>> GetAllCategorias<T>(CancellationToken cancellationToken);
         Task<Categorium> CreateCategoria(Categorium categoria, CancellationToken cancellationToken);
     }
 }

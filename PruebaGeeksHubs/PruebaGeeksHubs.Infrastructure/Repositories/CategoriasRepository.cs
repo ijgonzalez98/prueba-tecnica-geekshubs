@@ -1,36 +1,40 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using PruebaGeeksHubs.Domain.Entities;
 using PruebaGeeksHubs.Domain.Repositories;
 using PruebaGeeksHubs.Infrastructure.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PruebaGeeksHubs.Infrastructure.Repositories
 {
     public class CategoriasRepository : ICategoriasRepository
     {
         private readonly TiendaDbContext _context;
+        private readonly IConfigurationProvider _mapperConfig;
 
-        public CategoriasRepository(TiendaDbContext context)
+        public CategoriasRepository(TiendaDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapperConfig = mapper.ConfigurationProvider;
         }
 
-        public async Task<Categorium> GetCategoriaById(int categoriaId, CancellationToken cancellationToken)
+        public async Task<T> GetCategoriaById<T>(int categoriaId, CancellationToken cancellationToken)
         {
-            return await _context.Categoria
+            var query = _context.Categoria
                 .AsNoTracking()
                 .Where(x => x.CategoriaId == categoriaId)
-                .FirstOrDefaultAsync(cancellationToken);
+                .ProjectTo<T>(_mapperConfig);
+
+            return await query.FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<List<Categorium>> GetAllCategorias(CancellationToken cancellationToken)
+        public async Task<List<T>> GetAllCategorias<T>(CancellationToken cancellationToken)
         {
-            return await _context.Categoria
+            var query = _context.Categoria
                 .AsNoTracking()
+                .ProjectTo<T>(_mapperConfig);
+
+            return await query
                 .ToListAsync(cancellationToken);
         }
 
