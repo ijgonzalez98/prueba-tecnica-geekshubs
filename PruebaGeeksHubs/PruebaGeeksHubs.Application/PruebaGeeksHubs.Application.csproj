@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\Requests\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PruebaGeeksHubs.Domain\PruebaGeeksHubs.Domain.csproj" />
     <ProjectReference Include="..\PruebaGeeksHubs.Infrastructure\PruebaGeeksHubs.Infrastructure.csproj" />
   </ItemGroup>

@@ -17,9 +17,7 @@ namespace PruebaGeeksHubs.Application.Features.Categorias.Queries.GetCategoriaBy
         {
             CategoriaResponseDTO categoria = await _repository.GetCategoriaById<CategoriaResponseDTO>(request.CategoriaId, cancellationToken);
 
-            if (categoria == null) throw new Exception("La categoría indicada no existe.");
-
-            return await Task.FromResult(categoria);
+            return categoria != null ? await Task.FromResult(categoria) : null;
         }
     }
 }

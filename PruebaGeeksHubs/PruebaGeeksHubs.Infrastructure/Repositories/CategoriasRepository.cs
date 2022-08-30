@@ -45,5 +45,29 @@ namespace PruebaGeeksHubs.Infrastructure.Repositories
 
             return categoria;
         }
+
+        public async Task<Categorium> UpdateCategoria(Categorium categoria, CancellationToken cancellationToken)
+        {
+            var entity = await _context.Categoria.FindAsync(categoria.CategoriaId);
+
+            if (entity == null) return null;
+
+            _context.Entry(entity).CurrentValues.SetValues(categoria);
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return categoria;
+        }
+
+        public async Task<bool> DeleteCategoria(int categoriaId, CancellationToken cancellationToken)
+        {
+            var entity = await _context.Categoria.FindAsync(categoriaId);
+
+            if (entity == null) return false;
+
+            _context.Categoria.Remove(entity);
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return true;
+        }
     }
 }
