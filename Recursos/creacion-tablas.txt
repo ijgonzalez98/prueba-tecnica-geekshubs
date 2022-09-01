@@ -1,0 +1,40 @@
+-- Creación de Tablas --
+
+CREATE TABLE categoria (
+    	categoria_id int IDENTITY(1,1) PRIMARY KEY,
+    	nombre varchar(255) NOT NULL,
+    	descripcion varchar(255)
+);
+
+CREATE TABLE producto (
+    	producto_id int IDENTITY(1,1) PRIMARY KEY,
+	categoria_id int FOREIGN KEY REFERENCES categoria(categoria_id) NOT NULL,
+    	nombre varchar(255) NOT NULL,
+    	precio numeric(18,2) NOT NULL,
+	cantidad int NOT NULL DEFAULT(0)
+);
+
+CREATE TABLE cliente (
+    	cliente_id int IDENTITY(1,1) PRIMARY KEY,
+    	nombre varchar(255) NOT NULL,
+	apellidos varchar(255),
+	telefono varchar(50),
+	fecha_nacimiento DATE,
+    	email varchar(255)
+);
+
+CREATE TABLE compra (
+    	compra_id int IDENTITY(1,1) PRIMARY KEY,
+    	cliente_id int FOREIGN KEY REFERENCES cliente(cliente_id) NOT NULL,
+	fecha DATE NOT NULL,
+	metodo_pago varchar(255),
+	estado varchar(50)
+);
+
+CREATE TABLE compra_producto (
+	compra_producto_id int IDENTITY(1,1) PRIMARY KEY,
+    	producto_id int FOREIGN KEY REFERENCES producto(producto_id) NOT NULL,
+    	compra_id int FOREIGN KEY REFERENCES compra(compra_id) NOT NULL,
+	cantidad int NOT NULL,
+	total numeric(18,2) NOT NULL
+);
