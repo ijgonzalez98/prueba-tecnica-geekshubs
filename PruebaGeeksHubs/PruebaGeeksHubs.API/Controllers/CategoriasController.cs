@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PruebaGeeksHubs.Application.DTOs.Requests;
 using PruebaGeeksHubs.Application.Features.Categorias.Commands.CreateCategoria;
 using PruebaGeeksHubs.Application.Features.Categorias.Commands.DeleteCategoria;
 using PruebaGeeksHubs.Application.Features.Categorias.Commands.UpdateCategoria;
 using PruebaGeeksHubs.Application.Features.Categorias.Queries.GetAllCategorias;
 using PruebaGeeksHubs.Application.Features.Categorias.Queries.GetCategoriaById;
+using PruebaGeeksHubs.Application.Features.Categorias.Queries.GetProductosByCategoria;
 
 namespace PruebaGeeksHubs.API.Controllers
 {
@@ -35,6 +35,17 @@ namespace PruebaGeeksHubs.API.Controllers
             return response != null ? Ok(response) : NotFound();
         }
 
+        [HttpGet("{categoriaId:int}/productos")]
+        public async Task<IActionResult> GetProductosByCategoria([FromRoute] int categoriaId)
+        {
+            var query = new GetProductosByCategoriaQuery
+            {
+                CategoriaId = categoriaId
+            };
+
+            return Ok(await _mediator.Send(query));
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAllCategorias()
         {
@@ -48,7 +59,7 @@ namespace PruebaGeeksHubs.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateCategoriaCommand command)
         {
-            return Ok(await _mediator.Send(command));
+            return Created("", await _mediator.Send(command));
         }
 
         #endregion POST
@@ -56,13 +67,11 @@ namespace PruebaGeeksHubs.API.Controllers
         #region PATCH
 
         [HttpPatch("{categoriaId:int}")]
-        public async Task<IActionResult> Patch([FromRoute] int categoriaId, [FromBody] UpdateCategoriaDTO request)
+        public async Task<IActionResult> Patch(
+            [FromRoute] int categoriaId,
+            [FromBody] UpdateCategoriaCommand.UpdateCategoriaRequestData request)
         {
-            var command = new UpdateCategoriaCommand
-            {
-                CategoriaId = categoriaId,
-                RequestBody = request
-            };
+            var command = new UpdateCategoriaCommand(categoriaId, request);
 
             var response = await _mediator.Send(command);
 
@@ -83,7 +92,7 @@ namespace PruebaGeeksHubs.API.Controllers
 
             var response = await _mediator.Send(command);
 
-            return response ? Ok() : NotFound();
+            return response ? Ok() : NoContent();
         }
 
         #endregion DELETE

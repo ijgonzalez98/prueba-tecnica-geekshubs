@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using PruebaGeeksHubs.Application.DTOs.Requests;
 using PruebaGeeksHubs.Application.DTOs.Responses;
 
 namespace PruebaGeeksHubs.Application.Features.Categorias.Commands.UpdateCategoria
@@ -7,6 +6,18 @@ namespace PruebaGeeksHubs.Application.Features.Categorias.Commands.UpdateCategor
     public class UpdateCategoriaCommand : IRequest<CategoriaResponseDTO>
     {
         public int CategoriaId { get; set; }
-        public UpdateCategoriaDTO RequestBody { get; set; } = null!;
+        public readonly UpdateCategoriaRequestData Data;
+
+        public UpdateCategoriaCommand(int categoriaId, UpdateCategoriaRequestData data)
+        {
+            CategoriaId = categoriaId;
+            Data = data;
+        }
+
+        public class UpdateCategoriaRequestData
+        {
+            public string? Nombre { get; set; }
+            public string? Descripcion { get; set; }
+        }
     }
 }

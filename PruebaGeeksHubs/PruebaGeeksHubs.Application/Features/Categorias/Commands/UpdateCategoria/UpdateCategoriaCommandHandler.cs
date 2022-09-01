@@ -23,8 +23,8 @@ namespace PruebaGeeksHubs.Application.Features.Categorias.Commands.UpdateCategor
 
             if (categoria == null) return null;
 
-            categoria.Nombre = request.RequestBody.Nombre ?? categoria.Nombre;
-            categoria.Descripcion = request.RequestBody.Descripcion ?? categoria.Descripcion;
+            categoria.Nombre = request.Data.Nombre ?? categoria.Nombre;
+            categoria.Descripcion = request.Data.Descripcion ?? categoria.Descripcion;
 
             var response = _mapper.Map<CategoriaResponseDTO>(await _repository.UpdateCategoria(categoria, cancellationToken));
 
