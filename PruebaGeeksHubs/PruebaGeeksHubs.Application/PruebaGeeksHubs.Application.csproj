@@ -9,11 +9,16 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PruebaGeeksHubs.Domain\PruebaGeeksHubs.Domain.csproj" />
     <ProjectReference Include="..\PruebaGeeksHubs.Infrastructure\PruebaGeeksHubs.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DTOs\Requests\" />
   </ItemGroup>
 
 </Project>

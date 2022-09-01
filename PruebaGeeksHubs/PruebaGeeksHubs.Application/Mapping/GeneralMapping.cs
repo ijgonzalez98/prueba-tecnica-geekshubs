@@ -13,6 +13,15 @@ namespace PruebaGeeksHubs.Application.Mapping
 
             CreateMap<Cliente, Cliente>();
             CreateMap<Cliente, ClienteResponseDTO>();
+
+            CreateMap<Producto, Producto>();
+            CreateMap<Producto, ProductoResponseDTO>();
+
+            CreateMap<Compra, Compra>();
+            CreateMap<Compra, CompraResponseDTO>();
+
+            CreateMap<CompraProducto, CompraProducto>();
+            CreateMap<CompraProducto, CompraProductoResponseDTO>();
         }
     }
 }

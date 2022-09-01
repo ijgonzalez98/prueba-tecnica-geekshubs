@@ -11,12 +11,12 @@ namespace PruebaGeeksHubs.Domain.Entities
         }
 
         public int CompraId { get; set; }
-        public int? ClienteId { get; set; }
+        public int ClienteId { get; set; }
         public DateTime Fecha { get; set; }
         public string? MetodoPago { get; set; }
         public string? Estado { get; set; }
 
-        public virtual Cliente? Cliente { get; set; }
+        public virtual Cliente Cliente { get; set; } = null!;
         public virtual ICollection<CompraProducto> CompraProductos { get; set; }
     }
 }

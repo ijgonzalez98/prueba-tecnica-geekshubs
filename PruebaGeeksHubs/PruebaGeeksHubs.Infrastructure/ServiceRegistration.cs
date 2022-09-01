@@ -16,6 +16,8 @@ namespace PruebaGeeksHubs.Infrastructure
             #region Repositories
             services.AddTransient<ICategoriasRepository, CategoriasRepository>();
             services.AddTransient<IClientesRepository, ClientesRepository>();
+            services.AddTransient<IProductosRepository, ProductosRepository>();
+            services.AddTransient<IComprasRepository, ComprasRepository>(); 
             #endregion Repositories
         }
     }

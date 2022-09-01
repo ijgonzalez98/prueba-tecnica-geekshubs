@@ -25,7 +25,7 @@ namespace PruebaGeeksHubs.Infrastructure.Contexts
             modelBuilder.Entity<Categorium>(entity =>
             {
                 entity.HasKey(e => e.CategoriaId)
-                    .HasName("PK__categori__DB875A4F0B45A8F1");
+                    .HasName("PK__categori__DB875A4FBA11A002");
 
                 entity.ToTable("categoria");
 
@@ -98,7 +98,8 @@ namespace PruebaGeeksHubs.Infrastructure.Contexts
                 entity.HasOne(d => d.Cliente)
                     .WithMany(p => p.Compras)
                     .HasForeignKey(d => d.ClienteId)
-                    .HasConstraintName("FK__compra__cliente___398D8EEE");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__compra__cliente___47DBAE45");
             });
 
             modelBuilder.Entity<CompraProducto>(entity =>
@@ -120,12 +121,14 @@ namespace PruebaGeeksHubs.Infrastructure.Contexts
                 entity.HasOne(d => d.Compra)
                     .WithMany(p => p.CompraProductos)
                     .HasForeignKey(d => d.CompraId)
-                    .HasConstraintName("FK__compra_pr__compr__3D5E1FD2");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__compra_pr__compr__4BAC3F29");
 
                 entity.HasOne(d => d.Producto)
                     .WithMany(p => p.CompraProductos)
                     .HasForeignKey(d => d.ProductoId)
-                    .HasConstraintName("FK__compra_pr__produ__3C69FB99");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__compra_pr__produ__4AB81AF0");
             });
 
             modelBuilder.Entity<Producto>(entity =>
@@ -150,7 +153,8 @@ namespace PruebaGeeksHubs.Infrastructure.Contexts
                 entity.HasOne(d => d.Categoria)
                     .WithMany(p => p.Productos)
                     .HasForeignKey(d => d.CategoriaId)
-                    .HasConstraintName("FK__producto__catego__33D4B598");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__producto__catego__4222D4EF");
             });
 
             OnModelCreatingPartial(modelBuilder);
