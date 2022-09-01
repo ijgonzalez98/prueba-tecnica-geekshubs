@@ -4,7 +4,7 @@ using PruebaGeeksHubs.Domain.Repositories;
 
 namespace PruebaGeeksHubs.Application.Features.Clientes.Queries.GetClienteById
 {
-    internal class GetClienteByIdQueryHandler : IRequestHandler<GetClienteByIdQuery, ClienteResponseDTO>
+    public class GetClienteByIdQueryHandler : IRequestHandler<GetClienteByIdQuery, ClienteResponseDTO>
     {
         private readonly IClientesRepository _repository;
 

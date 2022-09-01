@@ -23,11 +23,11 @@ namespace PruebaGeeksHubs.Application.Features.Clientes.Commands.UpdateCliente
 
             if (cliente == null) return null;
 
-            cliente.Nombre = request.RequestBody.Nombre ?? cliente.Nombre;
-            cliente.Apellidos = request.RequestBody.Apellidos ?? cliente.Apellidos;
-            cliente.Telefono = request.RequestBody.Telefono ?? cliente.Telefono;
-            cliente.FechaNacimiento = request.RequestBody.FechaNacimiento ?? cliente.FechaNacimiento;
-            cliente.Email = request.RequestBody.Email ?? cliente.Email;
+            cliente.Nombre = request.Data.Nombre ?? cliente.Nombre;
+            cliente.Apellidos = request.Data.Apellidos ?? cliente.Apellidos;
+            cliente.Telefono = request.Data.Telefono ?? cliente.Telefono;
+            cliente.FechaNacimiento = request.Data.FechaNacimiento ?? cliente.FechaNacimiento;
+            cliente.Email = request.Data.Email ?? cliente.Email;
 
             var response = _mapper.Map<ClienteResponseDTO>(await _repository.UpdateCliente(cliente, cancellationToken));
 
